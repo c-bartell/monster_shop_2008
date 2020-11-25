@@ -3,7 +3,8 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  get "/home", to: "home#index"
+  resources :home, only: :index
+  # get "/home", to: "home#index"
 
   get "/login", to: "sessions#new"
   post '/login', to: "sessions#create"
