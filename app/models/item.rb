@@ -28,7 +28,7 @@ class Item <ApplicationRecord
     Item.joins(:item_orders)
         .where(active?: true)
         .group('items.name')
-        .order('sum(item_orders.quantity) desc')
+        .order(Arel.sql('sum(item_orders.quantity) desc'))
         .limit(5)
         .sum('item_orders.quantity')
   end
@@ -37,7 +37,7 @@ class Item <ApplicationRecord
     Item.joins(:item_orders)
         .where(active?: true)
         .group('items.name')
-        .order('sum(item_orders.quantity)')
+        .order(Arel.sql('sum(item_orders.quantity)'))
         .limit(5)
         .sum('item_orders.quantity')
   end
