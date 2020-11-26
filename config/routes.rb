@@ -3,11 +3,12 @@ Rails.application.routes.draw do
 
   root 'home#index'
 
-  resources :home, only: :index
   # get "/home", to: "home#index"
+  resources :home, only: :index
 
-  get "/login", to: "sessions#new"
-  post '/login', to: "sessions#create"
+  # get "/login", to: "sessions#new"
+  # post '/login', to: "sessions#create"
+  resources :login, only: [:new, :create], controller: :sessions, path_names: { new: '' }
   delete '/logout', to: 'sessions#destroy'
 
   get "/merchants", to: "merchants#index"
