@@ -9,7 +9,8 @@ Rails.application.routes.draw do
   # get "/login", to: "sessions#new"
   # post '/login', to: "sessions#create"
   resources :login, only: [:new, :create], controller: :sessions, path_names: { new: '' }
-  delete '/logout', to: 'sessions#destroy'
+  # delete '/logout', to: 'sessions#destroy'
+  resource :logout, only: :destroy, controller: :sessions
 
   get "/merchants", to: "merchants#index"
   get "/merchants/new", to: "merchants#new"
