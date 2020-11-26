@@ -19,26 +19,24 @@ Rails.application.routes.draw do
   # get "/merchants/:id/edit", to: "merchants#edit"
   # patch "/merchants/:id", to: "merchants#update"
   # delete "/merchants/:id", to: "merchants#destroy"
-  resources :merchants
+  # get "/merchants/:merchant_id/items", to: "items#index"
+  # get "/merchants/:merchant_id/items/new", to: "items#new"
+  # post "/merchants/:merchant_id/items", to: "items#create"
+  resources :merchants do
+    resources :items, only: [:index, :new, :create]
+  end
 
   # get "/items", to: "items#index"
   # get "/items/:id", to: "items#show"
   # get "/items/:id/edit", to: "items#edit"
   # patch "/items/:id", to: "items#update"
-  # get "/merchants/:merchant_id/items", to: "items#index"
-  # get "/merchants/:merchant_id/items/new", to: "items#new"
-  # post "/merchants/:merchant_id/items", to: "items#create"
   # delete "/items/:id", to: "items#destroy"
-
   # get "/items/:item_id/reviews/new", to: "reviews#new"
   # post "/items/:item_id/reviews", to: "reviews#create"
   resources(:items, only: [:index, :show, :edit, :update, :destroy]) do
     resources :reviews, only: [:new, :create]
   end
 
-  resources :merchants do
-    resources :items, only: [:index, :new, :create]
-  end
 
   get "/reviews/:id/edit", to: "reviews#edit"
   patch "/reviews/:id", to: "reviews#update"
