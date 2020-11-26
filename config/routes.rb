@@ -50,9 +50,10 @@ Rails.application.routes.draw do
   patch "/cart/:item_id/increase", to: "cart#increase_item"
   patch "/cart/:item_id/decrease", to: "cart#decrease_item"
 
-  get "/orders/new", to: "orders#new"
-  post "/orders", to: "orders#create"
-  get "/orders/:id", to: "orders#show"
+  # get "/orders/new", to: "orders#new"
+  # post "/orders", to: "orders#create"
+  # get "/orders/:id", to: "orders#show"
+  resources :orders, only: [:new, :create, :show]
 
   get "/register", to: "users#new"
   post "/register", to: "users#create"
