@@ -29,13 +29,16 @@ Rails.application.routes.draw do
   # get "/merchants/:merchant_id/items/new", to: "items#new"
   # post "/merchants/:merchant_id/items", to: "items#create"
   # delete "/items/:id", to: "items#destroy"
-  resources :items, only: [:index, :show, :edit, :update, :destroy]
+
+  # get "/items/:item_id/reviews/new", to: "reviews#new"
+  # post "/items/:item_id/reviews", to: "reviews#create"
+  resources(:items, only: [:index, :show, :edit, :update, :destroy]) do
+    resources :reviews, only: [:new, :create]
+  end
+
   resources :merchants do
     resources :items, only: [:index, :new, :create]
   end
-
-  get "/items/:item_id/reviews/new", to: "reviews#new"
-  post "/items/:item_id/reviews", to: "reviews#create"
 
   get "/reviews/:id/edit", to: "reviews#edit"
   patch "/reviews/:id", to: "reviews#update"
