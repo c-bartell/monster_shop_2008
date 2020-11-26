@@ -55,8 +55,9 @@ Rails.application.routes.draw do
   # get "/orders/:id", to: "orders#show"
   resources :orders, only: [:new, :create, :show]
 
-  get "/register", to: "users#new"
-  post "/register", to: "users#create"
+  # get "/register", to: "users#new"
+  # post "/register", to: "users#create"
+  resources :register, only: [:new, :create], controller: :users, path_names: { new: '' }
 
   get "/profile", to: "users#show"
 
