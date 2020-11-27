@@ -15,7 +15,7 @@ class CartController < ApplicationController
     end
   end
 
-  def empty
+  def destroy
     session.delete(:cart)
     redirect_to '/cart'
   end

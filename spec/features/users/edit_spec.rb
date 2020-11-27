@@ -66,7 +66,6 @@ describe "As a registered User" do
 
         click_button 'Submit'
 
-        expect(current_path).to eq('/profile/edit')
         expect(page).to have_content('No fields can be blank.')
 
         visit '/profile'
@@ -82,7 +81,6 @@ describe "As a registered User" do
 
         click_button 'Submit'
 
-        expect(current_path).to eq('/profile/edit')
         expect(page).to have_content('Incorrect password.')
 
         visit '/profile'
@@ -98,7 +96,6 @@ describe "As a registered User" do
 
         click_button 'Submit'
 
-        expect(current_path).to eq('/profile/edit')
         expect(page).to have_content("Email is already taken.")
       end
     end
