@@ -5,7 +5,7 @@ class Admin::MerchantsController < Admin::BaseController
   end
 
   def disable
-    merchant = Merchant.find(params[:merchant_id])
+    merchant = Merchant.find(params[:id])
     merchant.update(active?: false)
     merchant.items.update(active?: false)
     redirect_to "/admin/merchants"
@@ -13,7 +13,7 @@ class Admin::MerchantsController < Admin::BaseController
   end
 
   def enable
-    merchant = Merchant.find(params[:merchant_id])
+    merchant = Merchant.find(params[:id])
     merchant.update(active?: true)
     redirect_to "/admin/merchants"
     flash[:notice] = "#{merchant.name} is enabled"

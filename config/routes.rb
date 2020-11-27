@@ -96,11 +96,18 @@ Rails.application.routes.draw do
     # get "/users", to: "users#index"
     # get "/users/:user_id", to: "users#show"
     resources :users, only: [:index, :show], param: :user_id
-    get "/merchants", to: "merchants#index"
-    get "/merchants/:id", to: "merchants#show"
-    patch "/merchants/:merchant_id/disable", to: "merchants#disable"
-    patch "/merchants/:merchant_id/enable", to: "merchants#enable"
-    get "/merchants/:merchant_id/items", to: "items#index"
+    # get "/merchants", to: "merchants#index"
+    # get "/merchants/:id", to: "merchants#show"
+    # Changed merchant_id to id in controller for #enable and #disable
+    # patch "/merchants/:merchant_id/disable", to: "merchants#disable"
+    # patch "/merchants/:merchant_id/enable", to: "merchants#enable"
+    # get "/merchants/:merchant_id/items", to: "items#index"
+    resources :merchants, only: [:index, :show] do
+      patch :disable, on: :member
+      patch :enable, on: :member
+      resources :items, only: [:index]
+    end
+
     patch "/orders/:order_id", to: "orders#update"
   end
 end
