@@ -91,9 +91,11 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "/", to: "dashboard#index"
-    get "/users", to: "users#index"
-    get "/users/:user_id", to: "users#show"
+    # get "/", to: "dashboard#index"
+    root 'dashboard#index'
+    # get "/users", to: "users#index"
+    # get "/users/:user_id", to: "users#show"
+    resources :users, only: [:index, :show], param: :user_id
     get "/merchants", to: "merchants#index"
     get "/merchants/:id", to: "merchants#show"
     patch "/merchants/:merchant_id/disable", to: "merchants#disable"
