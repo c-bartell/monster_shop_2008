@@ -1,5 +1,6 @@
 <%= content_tag :h1, "Edit Profile" %>
-<%= form_tag '/profile/edit', method: :patch do %>
+<%# <%= form_tag '/profile/edit', method: :patch do %> %>
+<%= form_tag '/profile', method: :patch do %>
   <%= label_tag(:name, "Name") %>
   <%= text_field_tag(:name, value = current_user.name) %>
   <%= label_tag(:address, "Address") %>

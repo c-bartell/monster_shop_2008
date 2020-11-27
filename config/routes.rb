@@ -71,13 +71,15 @@ Rails.application.routes.draw do
   # get "/profile/orders", to: "orders#index"
   # get "/profile/orders/:id", to: "orders#show"
   # patch "/profile/orders/:id", to: "orders#update"
-  resource :profile, only: [:show, :edit], controller: :users do
+  # patch "/profile/edit", to: "users#update"
+  # get "/profile/edit/password", to: "users#edit_password"
+  # patch "/profile/edit/password", to: "users#update_password"
+  resource :profile, only: [:show, :edit, :update], controller: :users do
+    get "/edit/password", to: "users#edit_password"
+    patch "/edit/password", to: "users#update_password"
     resources :orders, only: [:index, :show, :update]
   end
 
-  patch "/profile/edit", to: "users#update"
-  get "/profile/edit/password", to: "users#edit_password"
-  patch "/profile/edit/password", to: "users#update_password"
 
   namespace :merchant do
     # get "/", to: "dashboard#index"
