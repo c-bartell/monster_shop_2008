@@ -84,8 +84,9 @@ Rails.application.routes.draw do
     resources :items, only: [:index, :new, :create, :edit]
     resource :items, only: [:update, :destroy]
     patch "/items/:id/edit",to: "items#edit_update"
-    get "/orders/:id", to: "orders#show"
-    patch "/orders/:id", to: "orders#update"
+    # get "/orders/:id", to: "orders#show"
+    # patch "/orders/:id", to: "orders#update"
+    resources :orders, only: [:show, :update]
   end
 
   namespace :admin do
