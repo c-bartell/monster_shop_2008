@@ -59,16 +59,17 @@ Rails.application.routes.draw do
   # post "/register", to: "users#create"
   resources :register, only: [:new, :create], controller: :users, path_names: { new: '' }
 
-  get "/profile", to: "users#show"
+  # get "/profile", to: "users#show"
+  # get "/profile/edit", to: "users#edit"
+  resource :profile, only: [:show, :edit], controller: :users
+  
+  patch "/profile/edit", to: "users#update"
+  get "/profile/edit/password", to: "users#edit_password"
+  patch "/profile/edit/password", to: "users#update_password"
 
   get "/profile/orders", to: "orders#index"
   get "/profile/orders/:id", to: "orders#show"
   patch "/profile/orders/:id", to: "orders#update"
-
-  get "/profile/edit", to: "users#edit"
-  patch "/profile/edit", to: "users#update"
-  get "/profile/edit/password", to: "users#edit_password"
-  patch "/profile/edit/password", to: "users#update_password"
 
   namespace :merchant do
     get "/", to: "dashboard#index"
