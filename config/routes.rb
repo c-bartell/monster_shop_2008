@@ -61,18 +61,20 @@ Rails.application.routes.draw do
 
   # get "/profile", to: "users#show"
   # get "/profile/edit", to: "users#edit"
-  resource :profile, only: [:show, :edit], controller: :users
-  
+  # get "/profile/orders", to: "orders#index"
+  # get "/profile/orders/:id", to: "orders#show"
+  # patch "/profile/orders/:id", to: "orders#update"
+  resource :profile, only: [:show, :edit], controller: :users do
+    resources :orders, only: [:index, :show, :update]
+  end
+
   patch "/profile/edit", to: "users#update"
   get "/profile/edit/password", to: "users#edit_password"
   patch "/profile/edit/password", to: "users#update_password"
 
-  get "/profile/orders", to: "orders#index"
-  get "/profile/orders/:id", to: "orders#show"
-  patch "/profile/orders/:id", to: "orders#update"
-
   namespace :merchant do
-    get "/", to: "dashboard#index"
+    # get "/", to: "dashboard#index"
+    root 'dashboard#index'
     get "/items", to: "items#index"
     get "/orders/:id", to: "orders#show"
     patch "/orders/:id", to: "orders#update"
