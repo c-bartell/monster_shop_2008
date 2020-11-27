@@ -44,7 +44,8 @@ Rails.application.routes.draw do
   resources :reviews, only: [:edit, :update, :destroy]
 
   post "/cart/:item_id", to: "cart#add_item"
-  get "/cart", to: "cart#show"
+  # get "/cart", to: "cart#show"
+  resource :cart, only: :show, controller: :cart
   delete "/cart", to: "cart#empty"
   delete "/cart/:item_id", to: "cart#remove_item"
   patch "/cart/:item_id/increase", to: "cart#increase_item"
