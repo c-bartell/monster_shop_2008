@@ -45,8 +45,9 @@ Rails.application.routes.draw do
 
   post "/cart/:item_id", to: "cart#add_item"
   # get "/cart", to: "cart#show"
-  resource :cart, only: :show, controller: :cart
-  delete "/cart", to: "cart#empty"
+  # Changed cart_controller#empty to cart_controller#destroy
+  # delete "/cart", to: "cart#empty"
+  resource :cart, only: [:show, :destroy], controller: :cart
   delete "/cart/:item_id", to: "cart#remove_item"
   patch "/cart/:item_id/increase", to: "cart#increase_item"
   patch "/cart/:item_id/decrease", to: "cart#decrease_item"
