@@ -105,9 +105,9 @@ Rails.application.routes.draw do
     resources :merchants, only: [:index, :show] do
       patch :disable, on: :member
       patch :enable, on: :member
-      resources :items, only: [:index]
+      resources :items, only: :index
     end
-
-    patch "/orders/:order_id", to: "orders#update"
+    resources :orders, only: :update
+    # patch "/orders/:order_id", to: "orders#update"
   end
 end
